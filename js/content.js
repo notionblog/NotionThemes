@@ -1,3 +1,5 @@
+const BASE_URL = "https://notionthemes.netlify.app";
+
 const sendMessage = async (params) => {
   return new Promise((resolve, reject) => {
     try {
@@ -22,17 +24,17 @@ const getStorageData = async (params) => {
 };
 
 const getTheme = async () => {
-  let { link, name, style } = await getStorageData(["link", "name", "style"]);
+  let { path, name, style } = await getStorageData(["path", "name", "style"]);
 
-  if (link && name && style) {
+  if (path && name && style) {
     console.log("www");
     const global = await sendMessage({
       query: "getTheme",
-      url: `https://notionstyle.github.io/notionthemes/${style}/global.min.css?random=${Math.random()}`,
+      url: `${BASE_URL}/${style}/global.min.css?random=${Math.random()}`,
     });
     const theme = await sendMessage({
       query: "getTheme",
-      url: `${link}?random=${Math.random()}`,
+      url: `${BASE_URL}/${path}?random=${Math.random()}`,
     });
     console.log(global);
     console.log(theme);

@@ -1,4 +1,4 @@
-const BASE_URL = "https://notionstyle.github.io/notionthemes";
+const BASE_URL = "https://notionthemes.netlify.app";
 
 // Fetch themes from the json config file
 const getThemes = async () => {
@@ -17,7 +17,7 @@ const setTheme = async (theme) => {
   console.log(theme);
   chrome.storage.sync.set(
     {
-      link: theme.link,
+      path: theme.path,
       name: theme.name,
       img: theme.img,
       style: theme.style,
