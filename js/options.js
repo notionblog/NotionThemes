@@ -15,6 +15,17 @@ const getThemes = async () => {
 const setTheme = async (theme) => {
   console.log("setting theme");
   console.log(theme);
+  chrome.storage.sync.set(
+    {
+      link: theme.link,
+      name: theme.name,
+      img: theme.img,
+      style: theme.style,
+    },
+    function () {
+      console.log("saved!");
+    }
+  );
 };
 
 // Preview Themes
