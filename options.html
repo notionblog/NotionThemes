@@ -1,9 +1,53 @@
 <html>
   <head>
     <title>Option Page</title>
+    <style>
+      .theme {
+        padding: 15px;
+        width: 150px;
+        display: inline-block;
+        margin-right: 5px;
+        background-color: #1a1d26;
+        color: white;
+        border-radius: 15px;
+      }
+      .theme img {
+        width: 100px;
+        display: block;
+        margin: auto;
+      }
+      .theme .description {
+        text-align: center;
+        margin-top: 10px;
+      }
+      .theme .tag {
+        padding: 2px 4px;
+        font-size: 12px;
+        color: #1a1d26;
+        background-color: darksalmon;
+        border-radius: 5px;
+        margin: 10px 0px 0 3px;
+        display: inline-block;
+      }
+      .theme .name {
+        font-size: 20px;
+        display: block;
+      }
+    </style>
   </head>
 
   <body>
     <div class="container">Options</div>
+    <div>
+      <h2>Light</h2>
+      <ul id="lightThemes"></ul>
+    </div>
+    <hr />
+    <div>
+      <h2>Dark</h2>
+      <ul id="darkThemes"></ul>
+    </div>
+
+    <script src="js/options.js"></script>
   </body>
 </html>
