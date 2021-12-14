@@ -46,9 +46,9 @@ const getTheme = async () => {
       style.type = "text/css";
 
       if (style.styleSheet) {
-        style.styleSheet.cssText = `${global} \n ${theme}`;
+        style.styleSheet.cssText = `${theme} \n ${global} `;
       } else {
-        style.appendChild(document.createTextNode(`${global} \n ${theme}`));
+        style.appendChild(document.createTextNode(`${theme} \n ${global} `));
       }
     } else {
       console.log("error fetching theme");
