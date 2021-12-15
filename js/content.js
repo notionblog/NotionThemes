@@ -36,8 +36,6 @@ const getTheme = async () => {
       query: "getTheme",
       url: `${BASE_URL}/${path}?random=${Math.random()}`,
     });
-    console.log(global);
-    console.log(theme);
 
     if (global !== undefined && theme !== undefined) {
       const head = document.head || document.getElementsByTagName("head")[0],
