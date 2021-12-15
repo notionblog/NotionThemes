@@ -1,0 +1,4 @@
+[submodule "themes"]
+	path = themes
+	url = git@github.com:notionblog/Notion-web-themes.git
+	branch = main
