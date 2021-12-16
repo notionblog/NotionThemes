@@ -1,17 +1,16 @@
 {
-  "manifest_version": 3,
+  "manifest_version": 2,
   "name": "NotionWebThemes",
   "version": "0.0.1",
   "description": "Beautiful themes for Notion Web.",
-  "permissions": ["storage"],
-  "host_permissions": ["https://notionstyle.github.io/"],
+  "permissions": ["storage", "https://notionthemes.netlify.app/"],
   "icons": {
     "16": "icons/16.png",
     "48": "icons/48.png",
     "128": "icons/128.png"
   },
   "background": {
-    "service_worker": "background.js"
+    "scripts": ["background.js"]
   },
   "content_scripts": [
     {
@@ -19,7 +18,7 @@
       "js": ["js/content.js"]
     }
   ],
-  "action": {
+  "browser_action": {
     "default_title": "Choose a theme",
     "default_popup": "popup.html",
     "default_icon": {
@@ -27,5 +26,10 @@
       "38": "icons/48.png"
     }
   },
-  "options_page": "options.html"
+  "options_ui": {
+    "page": "options.html",
+    "browser_style": true,
+    "chrome_style": true,
+    "open_in_tab": true
+  }
 }
