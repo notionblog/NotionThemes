@@ -2,13 +2,22 @@
   <head>
     <title>Option Page</title>
     <style>
+      body {
+        background-color: #ffffff;
+      }
+      .container {
+        max-width: 1000px;
+        margin: auto;
+        align-items: center;
+      }
       .theme {
         padding: 15px;
-        width: 150px;
+        width: 181px;
         display: inline-block;
-        margin-right: 5px;
-        background-color: #1a1d26;
-        color: white;
+        margin-right: 25px;
+        background-color: #ededed;
+        color: #4a4040;
+        border: 1px solid #d5d5d5;
         border-radius: 15px;
       }
       .theme img {
@@ -37,15 +46,16 @@
   </head>
 
   <body>
-    <div class="container">Options</div>
-    <div>
-      <h2>Light</h2>
-      <ul id="lightThemes"></ul>
-    </div>
-    <hr />
-    <div>
-      <h2>Dark</h2>
-      <ul id="darkThemes"></ul>
+    <div class="container">
+      <div>
+        <h2>Light</h2>
+        <ul id="lightThemes"></ul>
+      </div>
+
+      <div>
+        <h2>Dark</h2>
+        <ul id="darkThemes"></ul>
+      </div>
     </div>
 
     <script src="js/options.js"></script>

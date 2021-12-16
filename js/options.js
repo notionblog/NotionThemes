@@ -48,7 +48,7 @@ const previewThemes = (data) => {
     const li = document.createElement("li");
     li.setAttribute("class", "theme");
     darkThemesContainer.appendChild(li);
-    li.innerHTML = `<img src="${theme.img}" alt="${theme.name}" />
+    li.innerHTML = `<img src="${BASE_URL}${theme.img}" alt="${theme.name}" />
         <div class="description">
           <span class="name">${theme.name}</span>
           <span class="tag">${theme.style}</span>
@@ -61,7 +61,7 @@ const previewThemes = (data) => {
     const li = document.createElement("li");
     li.setAttribute("class", "theme");
     ligthThemesContainer.appendChild(li);
-    li.innerHTML = `<img src="${theme.img}" alt="${theme.name}" />
+    li.innerHTML = `<img src="${BASE_URL}${theme.img}" alt="${theme.name}" />
         <div class="description">
           <span class="name">${theme.name}</span>
           <span class="tag">${theme.style}</span>
