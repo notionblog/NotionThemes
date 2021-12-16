@@ -11,10 +11,21 @@ const getThemes = async () => {
   }
 };
 
+// get Storage Data
+const getStorageData = async (params) => {
+  return new Promise((resolve, reject) => {
+    try {
+      chrome.storage.sync.get(params, async (result) => {
+        resolve(result);
+      });
+    } catch (err) {
+      reject(err);
+    }
+  });
+};
+
 // Set theme
 const setTheme = async (theme) => {
-  console.log("setting theme");
-  console.log(theme);
   chrome.storage.sync.set(
     {
       path: theme.path,
@@ -23,19 +34,22 @@ const setTheme = async (theme) => {
       style: theme.style,
     },
     function () {
-      console.log("saved!");
+      window.location.reload();
     }
   );
 };
 
 // Preview Themes
-const previewThemes = (data) => {
+const previewThemes = async (data) => {
   const themes = Object.entries(data).map((theme) => {
     return {
       name: theme[0],
       ...theme[1],
     };
   });
+
+  let { name } = await getStorageData(["name"]);
+
   // Filter themes with style type
   const dark = themes.filter((theme) => theme.style.toLowerCase() === "dark");
   const ligth = themes.filter((theme) => theme.style.toLowerCase() === "light");
@@ -46,12 +60,13 @@ const previewThemes = (data) => {
 
   dark.forEach((theme) => {
     const li = document.createElement("li");
-    li.setAttribute("class", "theme");
+    li.setAttribute("id", theme.name);
+    li.setAttribute("class", `theme ${name === theme.name ? "selected" : ""}`);
     darkThemesContainer.appendChild(li);
     li.innerHTML = `<img src="${BASE_URL}${theme.img}" alt="${theme.name}" />
         <div class="description">
           <span class="name">${theme.name}</span>
-          <span class="tag">${theme.style}</span>
+         
         </div>`;
     li.addEventListener("click", () => {
       setTheme(theme);
@@ -59,20 +74,18 @@ const previewThemes = (data) => {
   });
   ligth.forEach((theme) => {
     const li = document.createElement("li");
-    li.setAttribute("class", "theme");
+    li.setAttribute("id", theme.name);
+    li.setAttribute("class", `theme ${name === theme.name ? "selected" : ""}`);
     ligthThemesContainer.appendChild(li);
     li.innerHTML = `<img src="${BASE_URL}${theme.img}" alt="${theme.name}" />
         <div class="description">
           <span class="name">${theme.name}</span>
-          <span class="tag">${theme.style}</span>
+
         </div>`;
     li.addEventListener("click", () => {
       setTheme(theme);
     });
   });
-
-  console.log(dark);
-  console.log(ligth);
 };
 
 // Load Themes

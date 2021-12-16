@@ -27,7 +27,6 @@ const getTheme = async () => {
   let { path, name, style } = await getStorageData(["path", "name", "style"]);
 
   if (path && name && style) {
-    console.log("www");
     const global = await sendMessage({
       query: "getTheme",
       url: `${BASE_URL}/${style}/global.min.css?random=${Math.random()}`,
