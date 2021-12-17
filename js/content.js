@@ -18,7 +18,7 @@ const getStorageData = async (params) => {
         if (result) {
           resolve(result);
         } else {
-          resolve(null);
+          resolve({ name: "default", path: "default", style: "default" });
         }
       });
     } catch (err) {

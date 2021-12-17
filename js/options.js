@@ -19,7 +19,7 @@ const getStorageData = async (params) => {
         if (result) {
           resolve(result);
         } else {
-          resolve(null);
+          resolve({ name: "default" });
         }
       });
     } catch (err) {
