@@ -33,7 +33,7 @@ const getTheme = async () => {
   if (path && name && style) {
     const global = await sendMessage({
       query: "getTheme",
-      url: `${BASE_URL}/${style}/global.min.css?random=${Math.random()}`,
+      url: `${BASE_URL}/${style}/global.css?random=${Math.random()}`,
     });
     const theme = await sendMessage({
       query: "getTheme",
