@@ -1,7 +1,5 @@
 #!/bin/sh
 
-
-
 # Copy neccesary files
 mkdir ext
 cp -r ./assets ./icons ./js ./background.js ./options.html ./popup.html ./manifest.json ./ext
