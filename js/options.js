@@ -16,7 +16,11 @@ const getStorageData = async (params) => {
   return new Promise((resolve, reject) => {
     try {
       chrome.storage.sync.get(params, async (result) => {
-        resolve(result);
+        if (result) {
+          resolve(result);
+        } else {
+          resolve(null);
+        }
       });
     } catch (err) {
       reject(err);
