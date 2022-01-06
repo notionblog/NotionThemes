@@ -11,6 +11,7 @@ const sendMessage = async (params) => {
     }
   });
 };
+
 const getStorageData = async (params) => {
   return new Promise((resolve, reject) => {
     try {
@@ -33,11 +34,11 @@ const getTheme = async () => {
   if (path && name && style) {
     const global = await sendMessage({
       query: "getTheme",
-      url: `${BASE_URL}/${style}/global.css?random=${Math.random()}`,
+      url: `${BASE_URL}/${style}/global.css`,
     });
     const theme = await sendMessage({
       query: "getTheme",
-      url: `${BASE_URL}/${path}?random=${Math.random()}`,
+      url: `${BASE_URL}/${path}`,
     });
 
     if (global !== undefined && theme !== undefined) {

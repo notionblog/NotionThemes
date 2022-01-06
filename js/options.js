@@ -29,7 +29,7 @@ const getStorageData = async (params) => {
 };
 
 // Set theme
-const setTheme = async (theme) => {
+const setTheme = async (theme, target) => {
   chrome.storage.sync.set(
     {
       path: theme.path,
@@ -38,7 +38,17 @@ const setTheme = async (theme) => {
       style: theme.style,
     },
     function () {
-      window.location.reload();
+      const toast = document.querySelector('#mainToast')
+      toast.classList.remove("hidden");
+
+      const selected = document.querySelector('.selected')
+      selected.classList.remove("selected")
+      
+      target.classList.add("selected")
+      
+      setTimeout(() => {
+        toast.classList.add("hidden");
+      }, 3000)
     }
   );
 };
@@ -69,11 +79,12 @@ const previewThemes = async (data) => {
     darkThemesContainer.appendChild(li);
     li.innerHTML = `<img src="${BASE_URL}${theme.img}" alt="${theme.name}" />
         <div class="description">
+          <span class="indicator"></span>
           <span class="name">${theme.name}</span>
          
         </div>`;
-    li.addEventListener("click", () => {
-      setTheme(theme);
+    li.addEventListener("click", (event) => {
+      setTheme(theme, event.currentTarget);
     });
   });
   ligth.forEach((theme) => {
@@ -83,11 +94,13 @@ const previewThemes = async (data) => {
     ligthThemesContainer.appendChild(li);
     li.innerHTML = `<img src="${BASE_URL}${theme.img}" alt="${theme.name}" />
         <div class="description">
+        <span class="indicator"></span>
           <span class="name">${theme.name}</span>
 
         </div>`;
-    li.addEventListener("click", () => {
-      setTheme(theme);
+    li.addEventListener("click", (event) => {
+ 
+      setTheme(theme, event.currentTarget);
     });
   });
 };

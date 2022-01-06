@@ -1,103 +1,159 @@
 <html>
-  <head>
-    <title>Choose a Notion theme</title>
 
-    <style>
-      body {
-        padding: 5% 10%;
-        background-color: #ffffff;
-      }
-      h1 {
-        font-size: 25pt;
-        margin-bottom: 3%;
-      }
-      h2 {
-        font-size: 15pt;
-      }
-      .container {
-        max-width: 1300px;
-        margin: auto;
-        align-items: center;
-      }
-      .theme {
-        overflow: hidden;
-        width: 250px;
-        display: inline-block;
-        margin-right: 25px;
-        margin-bottom: 20px;
-        background-color: #ffffff;
-        color: #323232;
-        border: 2px solid #e9e9e9;
-        border-radius: 15px;
-        padding-bottom: 10px;
-        cursor: pointer;
-        font-size: 11px;
-      }
-      .theme img {
-        width: 100%;
-        display: block;
-        margin: auto;
-      }
-      .theme .description {
-        text-align: center;
-        margin-top: 10px;
-      }
-      .theme .tag {
-        padding: 2px 4px;
-        font-size: 12px;
-        color: #1a1d26;
-        background-color: darksalmon;
-        border-radius: 5px;
-        margin: 10px 0px 0 3px;
-        display: inline-block;
-      }
-      .theme .name {
-        font-size: 20px;
-        display: block;
-      }
-      .selected {
-        border: 5px solid #41bfe5;
-      }
-      .copyright {
-        margin: auto;
-        text-align: center;
-        position: fixed;
-        bottom: 30px;
-        font-size: 13pt;
-        left: 0;
-        right: 0;
-      }
-    </style>
-  </head>
+<head>
+  <title>Choose a Notion theme</title>
+  <meta charset='UTF-8' />
 
-  <body>
-    <div class="container">
-      <h1>Choose a theme</h1>
-      <p style="font-size: 15px">
-        Follow me on Twitter <a href="https://twitter.com/_yudax">@_yudax</a> to
-        get updated when new themes are added.
-      </p>
-      <br />
-      <div>
-        <h2>Light</h2>
-        <ul id="lightThemes"></ul>
-      </div>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-      <div>
-        <h2>Dark</h2>
-        <ul id="darkThemes"></ul>
-      </div>
+    body {
+      padding: 5% 10%;
+      background-color: #ffffff;
+    }
+
+    h1 {
+      font-size: 25pt;
+      margin-bottom: 3%;
+    }
+
+    h2 {
+      font-size: 15pt;
+    }
+
+    .container {
+      max-width: 1300px;
+      margin: auto;
+      align-items: center;
+    }
+
+    .theme {
+      overflow: hidden;
+      width: 220px;
+      display: inline-block;
+      margin-right: 25px;
+      margin-bottom: 20px;
+      background-color: #fbfafa;
+      color: #323232;
+      border: 0.8px solid #d9d9d9;
+      border-radius: 15px;
+      padding-bottom: 10px;
+      cursor: pointer;
+      font-size: 11px;
+    }
+
+    .theme img {
+      width: 100%;
+      display: block;
+      margin: auto;
+      border-bottom: 0.8px solid #d9d9d9;
+    }
+
+    .theme .description {
+      align-items: center;
+      padding: 2px 15px;
+      margin-top: 10px;
+      font-size: 14px;
+      font-weight: bold;
+      display: flex;
+ 
+    }
+
+    .theme .description span {
+      display: inline-block;
+    }
+
+    .theme .tag {
+      padding: 2px 4px;
+      font-size: 12px;
+      color: #1a1d26;
+      background-color: darksalmon;
+      border-radius: 5px;
+      margin: 10px 0px 0 3px;
+      display: inline-block;
+    }
+
+    .selected {
+      border: 2px solid #41bfe5;
+    }
+
+    .copyright {
+      margin: auto;
+      text-align: center;
+      position: fixed;
+      bottom: 30px;
+      font-size: 13pt;
+      left: 0;
+      right: 0;
+    }
+
+    .mainToast {
+      background-color: #00c14d;
+      text-align: center;
+      padding: 10px 20px;
+      border-radius: 10px;
+      display: inline-block;
+      color: white;
+      font-size: 15pt;
+      position: fixed;
+      top: 5%;
+      right: 5%;
+      transition: transform 0.3s;
+      transform: translate(0);
+      opacity: 1;
+    }
+
+    .hidden {
+      transform: translate(9999px);
+      opacity: 0;
+    }
+
+    .indicator{
+     
+      width: 15px;
+      height: 15px;
+      padding: 1.2px;
+      border-radius: 50%;
+      border:1px solid #d7d1d1;
+      margin: 0px 5px;
+    }
+
+    .selected .indicator {
+      background-color: #41bfe5;
+      border-color: #41bfe5;
+      
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div id="mainToast" class="mainToast hidden">The theme has been applied 🥳 <br><small>Don't forget to refresh Notion to
+        see the changes</small></div>
+    <h1>🎨 Select a theme</h1>
+    <p style="font-size: 15px">
+      Follow me on 🐦 Twitter <a href="https://twitter.com/_yudax">@_yudax</a> to
+      get updated when new themes are added.
+    </p>
+    <br />
+    <div>
+      <h2>☀️ Light</h2>
+      <ul id="lightThemes"></ul>
     </div>
-    <div class="copyright">
-      <a href="https://ko-fi.com/M4M37F1UV" target="_blank"
-        ><img
-          height="50"
-          style="border: 0px; height: 50px"
-          src="https://cdn.ko-fi.com/cdn/kofi1.png?v=3"
-          border="0"
-          alt="Buy Me a Coffee at ko-fi.com"
-      /></a>
+
+    <div>
+      <h2>🌙 Dark</h2>
+      <ul id="darkThemes"></ul>
     </div>
-    <script src="js/options.js"></script>
-  </body>
+    <h1>⚙️ Configuration</h1>
+  </div>
+  <!-- <div class="copyright">
+    <a href="https://ko-fi.com/M4M37F1UV" target="_blank"><img height="50" style="border: 0px; height: 50px"
+        src="https://cdn.ko-fi.com/cdn/kofi1.png?v=3" border="0" alt="Buy Me a Coffee at ko-fi.com" /></a>
+  </div> -->
+  <script src="js/options.js"></script>
+</body>
+
 </html>
