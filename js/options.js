@@ -28,6 +28,23 @@ const getStorageData = async (params) => {
   });
 };
 
+// Set storage data
+const setStorageData = async (params) => {
+  return new Promise((resolve, reject) => {
+    try {
+      chrome.storage.sync.set(params, async (result) => {
+        if (result) {
+          resolve(true);
+        } else {
+          resolve(false);
+        }
+      });
+    } catch (err) {
+      reject(err);
+    }
+  });
+};
+
 // Set theme
 const setTheme = async (theme, target) => {
   chrome.storage.sync.set(
@@ -42,10 +59,13 @@ const setTheme = async (theme, target) => {
       toast.classList.remove("hidden");
 
       const selected = document.querySelector('.selected')
-      selected.classList.remove("selected")
-      
-      target.classList.add("selected")
-      
+      if (selected) {
+        selected.classList.remove("selected")
+      }
+      if (target) {
+        target.classList.add("selected")
+      }
+
       setTimeout(() => {
         toast.classList.add("hidden");
       }, 3000)
@@ -99,14 +119,61 @@ const previewThemes = async (data) => {
 
         </div>`;
     li.addEventListener("click", (event) => {
- 
+
       setTheme(theme, event.currentTarget);
     });
   });
 };
 
+
+// Reset to default theme
+const resetTheme = async () => {
+  await setTheme({
+    path: null,
+    name: "default",
+    img: null,
+    style: null,
+  })
+}
+
+// Config selected theme
+
+const fontSelectConfig = async () => {
+  let { font } = await getStorageData(["font"]);
+  const selectFont = document.querySelector('#selectFont')
+  selectFont.value = font
+}
+
 // Load Themes
 window.onload = async () => {
+  /*
+    State
+  */
+  // Themes
   const data = await getThemes();
   if (data !== null) previewThemes(data);
+  
+  // Selected font
+  fontSelectConfig()
+
+
+  /*
+    Actions
+  */
+
+  
+  // Reset button
+  const resetBtn = document.querySelector('#resetTheme')
+  resetBtn.addEventListener("click", () => {
+    resetTheme()
+  })
+  // selectFont
+  const selectFont = document.querySelector('#selectFont')
+  selectFont.addEventListener("change", async (event) => {
+    console.log(event.target.value)
+    await setStorageData({font: event.target.value})
+  })
+
+
 };
+

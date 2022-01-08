@@ -1,159 +1,229 @@
 <html>
+  <head>
+    <title>Choose a Notion theme</title>
+    <meta charset="UTF-8" />
 
-<head>
-  <title>Choose a Notion theme</title>
-  <meta charset='UTF-8' />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+      body {
+        padding: 5% 10%;
+        background-color: #ffffff;
+      }
 
-    body {
-      padding: 5% 10%;
-      background-color: #ffffff;
-    }
+      h1 {
+        font-size: 25pt;
+        margin-bottom: 3%;
+      }
 
-    h1 {
-      font-size: 25pt;
-      margin-bottom: 3%;
-    }
+      h2 {
+        font-size: 15pt;
+      }
 
-    h2 {
-      font-size: 15pt;
-    }
+      .container {
+        max-width: 1300px;
+        margin: auto;
+        align-items: center;
+      }
 
-    .container {
-      max-width: 1300px;
-      margin: auto;
-      align-items: center;
-    }
+      .theme {
+        overflow: hidden;
+        width: 220px;
+        display: inline-block;
+        margin-right: 25px;
+        margin-bottom: 20px;
+        background-color: #fbfafa;
+        color: #323232;
+        border: 0.8px solid #d9d9d9;
+        border-radius: 15px;
+        padding-bottom: 10px;
+        cursor: pointer;
+        font-size: 11px;
+      }
 
-    .theme {
-      overflow: hidden;
-      width: 220px;
-      display: inline-block;
-      margin-right: 25px;
-      margin-bottom: 20px;
-      background-color: #fbfafa;
-      color: #323232;
-      border: 0.8px solid #d9d9d9;
-      border-radius: 15px;
-      padding-bottom: 10px;
-      cursor: pointer;
-      font-size: 11px;
-    }
+      .theme img {
+        width: 100%;
+        display: block;
+        margin: auto;
+        border-bottom: 0.8px solid #d9d9d9;
+      }
 
-    .theme img {
-      width: 100%;
-      display: block;
-      margin: auto;
-      border-bottom: 0.8px solid #d9d9d9;
-    }
+      .theme .description {
+        align-items: center;
+        padding: 2px 15px;
+        margin-top: 10px;
+        font-size: 14px;
+        font-weight: bold;
+        display: flex;
+      }
 
-    .theme .description {
-      align-items: center;
-      padding: 2px 15px;
-      margin-top: 10px;
-      font-size: 14px;
-      font-weight: bold;
-      display: flex;
- 
-    }
+      .theme .description span {
+        display: inline-block;
+      }
 
-    .theme .description span {
-      display: inline-block;
-    }
+      .theme .tag {
+        padding: 2px 4px;
+        font-size: 12px;
+        color: #1a1d26;
+        background-color: darksalmon;
+        border-radius: 5px;
+        margin: 10px 0px 0 3px;
+        display: inline-block;
+      }
 
-    .theme .tag {
-      padding: 2px 4px;
-      font-size: 12px;
-      color: #1a1d26;
-      background-color: darksalmon;
-      border-radius: 5px;
-      margin: 10px 0px 0 3px;
-      display: inline-block;
-    }
+      .selected {
+        border: 2px solid #41bfe5;
+      }
 
-    .selected {
-      border: 2px solid #41bfe5;
-    }
+      .copyright {
+        margin: auto;
+        text-align: center;
+        position: fixed;
+        bottom: 30px;
+        font-size: 13pt;
+        left: 0;
+        right: 0;
+      }
 
-    .copyright {
-      margin: auto;
-      text-align: center;
-      position: fixed;
-      bottom: 30px;
-      font-size: 13pt;
-      left: 0;
-      right: 0;
-    }
+      .mainToast {
+        background-color: #00c14d;
+        text-align: center;
+        padding: 10px 20px;
+        border-radius: 10px;
+        display: inline-block;
+        color: white;
+        font-size: 15pt;
+        position: fixed;
+        top: 5%;
+        right: 5%;
+        transition: transform 0.3s;
+        transform: translate(0);
+        opacity: 1;
+      }
 
-    .mainToast {
-      background-color: #00c14d;
-      text-align: center;
-      padding: 10px 20px;
-      border-radius: 10px;
-      display: inline-block;
-      color: white;
-      font-size: 15pt;
-      position: fixed;
-      top: 5%;
-      right: 5%;
-      transition: transform 0.3s;
-      transform: translate(0);
-      opacity: 1;
-    }
+      .hidden {
+        transform: translate(9999px);
+        opacity: 0;
+      }
 
-    .hidden {
-      transform: translate(9999px);
-      opacity: 0;
-    }
+      .indicator {
+        width: 15px;
+        height: 15px;
+        padding: 1.2px;
+        border-radius: 50%;
+        border: 1px solid #d7d1d1;
+        margin: 0px 5px;
+      }
 
-    .indicator{
-     
-      width: 15px;
-      height: 15px;
-      padding: 1.2px;
-      border-radius: 50%;
-      border:1px solid #d7d1d1;
-      margin: 0px 5px;
-    }
+      .selected .indicator {
+        background-color: #41bfe5;
+        border-color: #41bfe5;
+      }
+      .warningBtn {
+        padding: 7px 26px;
+        background: #df2a2a;
+        color: #ffffff;
+        border: none;
+        outline: none;
+        border-radius: 3px;
+        cursor: pointer;
+        transition: 0.2s ease-in-out;
+      }
+      .warningBtn:hover {
+        background: #af4e4e;
+      }
+    </style>
+  </head>
 
-    .selected .indicator {
-      background-color: #41bfe5;
-      border-color: #41bfe5;
-      
-    }
-  </style>
-</head>
+  <body>
+    <div class="container">
+      <div id="mainToast" class="mainToast hidden">
+        The theme has been applied 🥳 <br /><small
+          >Don't forget to refresh Notion to see the changes</small
+        >
+      </div>
+      <h1>🎨 Select a theme</h1>
+      <p style="font-size: 15px">
+        Follow me on 🐦 Twitter
+        <a href="https://twitter.com/_yudax">@_yudax</a> to get updated when new
+        themes are added.
+      </p>
+      <br />
+      <div>
+        <h2>☀️ Light</h2>
+        <ul id="lightThemes"></ul>
+      </div>
 
-<body>
-  <div class="container">
-    <div id="mainToast" class="mainToast hidden">The theme has been applied 🥳 <br><small>Don't forget to refresh Notion to
-        see the changes</small></div>
-    <h1>🎨 Select a theme</h1>
-    <p style="font-size: 15px">
-      Follow me on 🐦 Twitter <a href="https://twitter.com/_yudax">@_yudax</a> to
-      get updated when new themes are added.
-    </p>
-    <br />
-    <div>
-      <h2>☀️ Light</h2>
-      <ul id="lightThemes"></ul>
+      <div>
+        <h2>🌙 Dark</h2>
+        <ul id="darkThemes"></ul>
+      </div>
+      <h1>⚙️ Configuration</h1>
+      <div>
+        <h2>🔄 Reset to default theme</h2>
+        <button id="resetTheme" class="warningBtn">Reset</button>
+      </div>
+      <br />
+      <div>
+        <h2>🔮 Font</h2>
+        <label>
+          Select a font:
+          <select id="selectFont" name="selectFont">
+            <option value="Default">Default</option>
+            <option value="Arimo">Arimo</option>
+            <option value="Arimo">Arimo</option>
+            <option value="Barlow">Barlow</option>
+            <option value="Dosis">Dosis</option>
+            <option value="Fira Sans">Fira Sans</option>
+            <option value="Heebo">Heebo</option>
+            <option value="IBM Plex Sans">IBM Plex Sans</option>
+            <option value="Inter">Inter</option>
+            <option value="Josefin Sans">Josefin Sans</option>
+            <option value="Karla">Karla</option>
+            <option value="Lato">Lato</option>
+            <option value="Libre Franklin">Libre Franklin</option>
+            <option value="Lora">Lora</option>
+            <option value="Merriweather">Merriweather</option>
+            <option value="Montserrat">Montserrat</option>
+            <option value="Mukta">Mukta</option>
+            <option value="Mulish">Mulish</option>
+            <option value="Nanum Gothic">Nanum Gothic</option>
+            <option value="Noto Sans">Noto Sans</option>
+            <option value="Noto Serif">Noto Serif</option>
+            <option value="Nunito">Nunito</option>
+            <option value="Nunito Sans">Nunito Sans</option>
+            <option value="Open Sans">Open Sans</option>
+            <option value="Oswald">Oswald</option>
+            <option value="Oxygen">Oxygen</option>
+            <option value="Poppins">Poppins</option>
+            <option value="PT Sans">PT Sans</option>
+            <option value="Playfair Display">Playfair Display</option>
+            <option value="Raleway">Raleway</option>
+            <option value="PT Serif">PT Serif</option>
+            <option value="Roboto">Roboto</option>
+            <option value="Roboto Condensed">Roboto Condensed</option>
+            <option value="Roboto Mono">Roboto Mono</option>
+            <option value="Roboto Slab">Roboto Slab</option>
+            <option value="Rubik">Rubik</option>
+            <option value="Source Code Pro">Source Code Pro</option>
+            <option value="Source Sans Pro">Source Sans Pro</option>
+            <option value="Titillium Web">Titillium Web</option>
+            <option value="Ubuntu">Ubuntu</option>
+            <option value="Work Sans">Work Sans</option>
+            <option value="Yanone Kaffeesatz">Yanone Kaffeesatz</option>
+            <option value="Lato">Lato</option>
+            <option value="Abel">Abel</option>
+            <option value="Exo 2">Exo 2</option>
+          </select>
+        </label>
+      </div>
     </div>
-
-    <div>
-      <h2>🌙 Dark</h2>
-      <ul id="darkThemes"></ul>
-    </div>
-    <h1>⚙️ Configuration</h1>
-  </div>
-  <!-- <div class="copyright">
+    <!-- <div class="copyright">
     <a href="https://ko-fi.com/M4M37F1UV" target="_blank"><img height="50" style="border: 0px; height: 50px"
         src="https://cdn.ko-fi.com/cdn/kofi1.png?v=3" border="0" alt="Buy Me a Coffee at ko-fi.com" /></a>
   </div> -->
-  <script src="js/options.js"></script>
-</body>
-
+    <script src="js/options.js"></script>
+  </body>
 </html>
