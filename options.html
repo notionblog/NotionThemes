@@ -134,6 +134,11 @@
       .warningBtn:hover {
         background: #af4e4e;
       }
+      .selectFont {
+        padding: 10px 3px;
+        border-radius: 5px;
+        background-color: #d9d9d9;
+      }
     </style>
   </head>
 
@@ -146,9 +151,16 @@
       </div>
       <h1>🎨 Select a theme</h1>
       <p style="font-size: 15px">
-        Follow me on 🐦 Twitter
-        <a href="https://twitter.com/_yudax">@_yudax</a> to get updated when new
-        themes are added.
+        Follow me
+        <a
+          href="https://twitter.com/intent/follow?user_id=1394691897562746881"
+          style="display: inline-block"
+        >
+          <img
+            src="https://img.shields.io/twitter/follow/_yudax?style=social"
+          />
+        </a>
+        to get updated when new themes are added.
       </p>
       <br />
       <div>
@@ -161,63 +173,19 @@
         <ul id="darkThemes"></ul>
       </div>
       <h1>⚙️ Configuration</h1>
-      <div>
-        <h2>🔄 Reset to default theme</h2>
-        <button id="resetTheme" class="warningBtn">Reset</button>
-      </div>
-      <br />
+
       <div>
         <h2>🔮 Font</h2>
         <label>
-          Select a font:
-          <select id="selectFont" name="selectFont">
+          <select id="selectFont" class="selectFont" name="selectFont">
             <option value="Default">Default</option>
-            <option value="Arimo">Arimo</option>
-            <option value="Arimo">Arimo</option>
-            <option value="Barlow">Barlow</option>
-            <option value="Dosis">Dosis</option>
-            <option value="Fira Sans">Fira Sans</option>
-            <option value="Heebo">Heebo</option>
-            <option value="IBM Plex Sans">IBM Plex Sans</option>
-            <option value="Inter">Inter</option>
-            <option value="Josefin Sans">Josefin Sans</option>
-            <option value="Karla">Karla</option>
-            <option value="Lato">Lato</option>
-            <option value="Libre Franklin">Libre Franklin</option>
-            <option value="Lora">Lora</option>
-            <option value="Merriweather">Merriweather</option>
-            <option value="Montserrat">Montserrat</option>
-            <option value="Mukta">Mukta</option>
-            <option value="Mulish">Mulish</option>
-            <option value="Nanum Gothic">Nanum Gothic</option>
-            <option value="Noto Sans">Noto Sans</option>
-            <option value="Noto Serif">Noto Serif</option>
-            <option value="Nunito">Nunito</option>
-            <option value="Nunito Sans">Nunito Sans</option>
-            <option value="Open Sans">Open Sans</option>
-            <option value="Oswald">Oswald</option>
-            <option value="Oxygen">Oxygen</option>
-            <option value="Poppins">Poppins</option>
-            <option value="PT Sans">PT Sans</option>
-            <option value="Playfair Display">Playfair Display</option>
-            <option value="Raleway">Raleway</option>
-            <option value="PT Serif">PT Serif</option>
-            <option value="Roboto">Roboto</option>
-            <option value="Roboto Condensed">Roboto Condensed</option>
-            <option value="Roboto Mono">Roboto Mono</option>
-            <option value="Roboto Slab">Roboto Slab</option>
-            <option value="Rubik">Rubik</option>
-            <option value="Source Code Pro">Source Code Pro</option>
-            <option value="Source Sans Pro">Source Sans Pro</option>
-            <option value="Titillium Web">Titillium Web</option>
-            <option value="Ubuntu">Ubuntu</option>
-            <option value="Work Sans">Work Sans</option>
-            <option value="Yanone Kaffeesatz">Yanone Kaffeesatz</option>
-            <option value="Lato">Lato</option>
-            <option value="Abel">Abel</option>
-            <option value="Exo 2">Exo 2</option>
           </select>
         </label>
+      </div>
+      <br />
+      <div>
+        <h2>🔄 Reset to default theme</h2>
+        <button id="resetTheme" class="warningBtn">Reset</button>
       </div>
     </div>
     <!-- <div class="copyright">

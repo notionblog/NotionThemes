@@ -11,6 +11,17 @@ const getThemes = async () => {
   }
 };
 
+// Fetch fonts
+const getFonts = async () => {
+  try {
+    const data = await fetch(`${BASE_URL}/fonts.json`);
+    return await data.json();
+  } catch (err) {
+    console.error(err);
+    return null;
+  }
+};
+
 // get Storage Data
 const getStorageData = async (params) => {
   return new Promise((resolve, reject) => {
@@ -55,22 +66,33 @@ const setTheme = async (theme, target) => {
       style: theme.style,
     },
     function () {
-      const toast = document.querySelector('#mainToast')
+      const toast = document.querySelector("#mainToast");
       toast.classList.remove("hidden");
 
-      const selected = document.querySelector('.selected')
+      const selected = document.querySelector(".selected");
       if (selected) {
-        selected.classList.remove("selected")
+        selected.classList.remove("selected");
       }
       if (target) {
-        target.classList.add("selected")
+        target.classList.add("selected");
       }
 
       setTimeout(() => {
         toast.classList.add("hidden");
-      }, 3000)
+      }, 3000);
     }
   );
+};
+
+// Preview fonts
+const previewFonts = (data) => {
+  const select = document.getElementById("selectFont");
+  data.forEach((el) => {
+    let opt = document.createElement("option");
+    opt.value = el;
+    opt.innerHTML = el;
+    select.appendChild(opt);
+  });
 };
 
 // Preview Themes
@@ -119,12 +141,10 @@ const previewThemes = async (data) => {
 
         </div>`;
     li.addEventListener("click", (event) => {
-
       setTheme(theme, event.currentTarget);
     });
   });
 };
-
 
 // Reset to default theme
 const resetTheme = async () => {
@@ -133,16 +153,16 @@ const resetTheme = async () => {
     name: "default",
     img: null,
     style: null,
-  })
-}
+  });
+};
 
 // Config selected theme
 
 const fontSelectConfig = async () => {
   let { font } = await getStorageData(["font"]);
-  const selectFont = document.querySelector('#selectFont')
-  selectFont.value = font
-}
+  const selectFont = document.querySelector("#selectFont");
+  selectFont.value = font;
+};
 
 // Load Themes
 window.onload = async () => {
@@ -152,28 +172,27 @@ window.onload = async () => {
   // Themes
   const data = await getThemes();
   if (data !== null) previewThemes(data);
-  
-  // Selected font
-  fontSelectConfig()
 
+  // Fonts
+  const { fonts } = await getFonts();
+  if (fonts !== null) previewFonts(fonts);
+
+  // Selected font
+  fontSelectConfig();
 
   /*
     Actions
   */
 
-  
   // Reset button
-  const resetBtn = document.querySelector('#resetTheme')
+  const resetBtn = document.querySelector("#resetTheme");
   resetBtn.addEventListener("click", () => {
-    resetTheme()
-  })
+    resetTheme();
+  });
   // selectFont
-  const selectFont = document.querySelector('#selectFont')
+  const selectFont = document.querySelector("#selectFont");
   selectFont.addEventListener("change", async (event) => {
-    console.log(event.target.value)
-    await setStorageData({font: event.target.value})
-  })
-
-
+    console.log(event.target.value);
+    await setStorageData({ font: event.target.value });
+  });
 };
-

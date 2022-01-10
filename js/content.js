@@ -66,10 +66,10 @@ const getTheme = async () => {
       }
 
       if (style.styleSheet) {
-        style.styleSheet.cssText = `${customFont} \n ${theme} \n ${global} `;
+        style.styleSheet.cssText = `${customFont}  \n ${theme} \n ${global}`;
       } else {
         style.appendChild(
-          document.createTextNode(`${customFont} \n ${theme} \n ${global} `)
+          document.createTextNode(`${customFont}  \n ${theme} \n ${global}`)
         );
       }
     } else {
