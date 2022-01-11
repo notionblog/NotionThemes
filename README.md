@@ -1,4 +1,4 @@
-![NotionThemes](./assets/notionthemes.gif)
+![NotionThemes](./assets/notionthemes.png)
 
 <h1 align="center">Notion Themes</h1>
 <p align="center">Make your Notion pretty with custom themes</p>

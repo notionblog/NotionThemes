@@ -11,6 +11,17 @@ const getThemes = async () => {
   }
 };
 
+// Fetch fonts
+const getFonts = async () => {
+  try {
+    const data = await fetch(`${BASE_URL}/fonts.json`);
+    return await data.json();
+  } catch (err) {
+    console.error(err);
+    return null;
+  }
+};
+
 // get Storage Data
 const getStorageData = async (params) => {
   return new Promise((resolve, reject) => {
@@ -28,8 +39,25 @@ const getStorageData = async (params) => {
   });
 };
 
+// Set storage data
+const setStorageData = async (params) => {
+  return new Promise((resolve, reject) => {
+    try {
+      chrome.storage.sync.set(params, async (result) => {
+        if (result) {
+          resolve(true);
+        } else {
+          resolve(false);
+        }
+      });
+    } catch (err) {
+      reject(err);
+    }
+  });
+};
+
 // Set theme
-const setTheme = async (theme) => {
+const setTheme = async (theme, target) => {
   chrome.storage.sync.set(
     {
       path: theme.path,
@@ -38,9 +66,33 @@ const setTheme = async (theme) => {
       style: theme.style,
     },
     function () {
-      window.location.reload();
+      const toast = document.querySelector("#mainToast");
+      toast.classList.remove("hidden");
+
+      const selected = document.querySelector(".selected");
+      if (selected) {
+        selected.classList.remove("selected");
+      }
+      if (target) {
+        target.classList.add("selected");
+      }
+
+      setTimeout(() => {
+        toast.classList.add("hidden");
+      }, 3000);
     }
   );
+};
+
+// Preview fonts
+const previewFonts = (data) => {
+  const select = document.getElementById("selectFont");
+  data.forEach((el) => {
+    let opt = document.createElement("option");
+    opt.value = el;
+    opt.innerHTML = el;
+    select.appendChild(opt);
+  });
 };
 
 // Preview Themes
@@ -69,11 +121,12 @@ const previewThemes = async (data) => {
     darkThemesContainer.appendChild(li);
     li.innerHTML = `<img src="${BASE_URL}${theme.img}" alt="${theme.name}" />
         <div class="description">
+          <span class="indicator"></span>
           <span class="name">${theme.name}</span>
          
         </div>`;
-    li.addEventListener("click", () => {
-      setTheme(theme);
+    li.addEventListener("click", (event) => {
+      setTheme(theme, event.currentTarget);
     });
   });
   ligth.forEach((theme) => {
@@ -83,17 +136,63 @@ const previewThemes = async (data) => {
     ligthThemesContainer.appendChild(li);
     li.innerHTML = `<img src="${BASE_URL}${theme.img}" alt="${theme.name}" />
         <div class="description">
+        <span class="indicator"></span>
           <span class="name">${theme.name}</span>
 
         </div>`;
-    li.addEventListener("click", () => {
-      setTheme(theme);
+    li.addEventListener("click", (event) => {
+      setTheme(theme, event.currentTarget);
     });
   });
 };
 
+// Reset to default theme
+const resetTheme = async () => {
+  await setTheme({
+    path: null,
+    name: "default",
+    img: null,
+    style: null,
+  });
+};
+
+// Config selected theme
+
+const fontSelectConfig = async () => {
+  let { font } = await getStorageData(["font"]);
+  const selectFont = document.querySelector("#selectFont");
+  selectFont.value = font;
+};
+
 // Load Themes
 window.onload = async () => {
+  /*
+    State
+  */
+  // Themes
   const data = await getThemes();
   if (data !== null) previewThemes(data);
+
+  // Fonts
+  const { fonts } = await getFonts();
+  if (fonts !== null) previewFonts(fonts);
+
+  // Selected font
+  fontSelectConfig();
+
+  /*
+    Actions
+  */
+
+  // Reset button
+  const resetBtn = document.querySelector("#resetTheme");
+  resetBtn.addEventListener("click", () => {
+    resetTheme();
+  });
+  // selectFont
+  const selectFont = document.querySelector("#selectFont");
+  selectFont.addEventListener("change", async (event) => {
+    console.log(event.target.value);
+    await setStorageData({ font: event.target.value });
+  });
 };
