@@ -14,12 +14,12 @@
       }
 
       h1 {
-        font-size: 25pt;
+        font-size: 20pt;
         margin-bottom: 3%;
       }
 
       h2 {
-        font-size: 15pt;
+        font-size: 10pt;
       }
 
       .container {
@@ -78,13 +78,7 @@
       }
 
       .copyright {
-        margin: auto;
-        text-align: center;
-        position: fixed;
-        bottom: 30px;
         font-size: 13pt;
-        left: 0;
-        right: 0;
       }
 
       .mainToast {
@@ -135,34 +129,74 @@
         background: #af4e4e;
       }
       .selectFont {
-        padding: 10px 3px;
+        padding: 10px 0px;
         border-radius: 5px;
-        background-color: #d9d9d9;
+        min-width: 200px;
+      }
+      .navBar {
+        margin-bottom: 5%;
+        display: flex;
+        justify-content: space-between;
+      }
+      .navBar ul {
+        display: flex;
+        align-items: center;
+        list-style: none;
+      }
+      .navBar ul li {
+        margin-left: 20px;
+        display: inline-block;
+      }
+      .navBar ul .follow {
+        background-color: #219eeb;
+        padding: 12px;
+        border-radius: 26px;
+        min-width: 263px;
+        text-align: center;
+      }
+      footer {
+        margin-top: 10%;
+        padding-top: 10px;
+        text-align: center;
       }
     </style>
   </head>
 
   <body>
     <div class="container">
+      <nav class="navBar">
+        <img src="./icons/48.png" width="48" height="48" />
+        <ul>
+          <li class="follow">
+            <a
+              href="https://twitter.com/intent/follow?user_id=1394691897562746881"
+              style="display: inline-block"
+            >
+              <img
+                src="https://img.shields.io/twitter/follow/_yudax?style=social"
+                height="30"
+              />
+            </a>
+          </li>
+          <li>
+            <a href="https://ko-fi.com/M4M37F1UV" target="_blank"
+              ><img
+                height="50"
+                style="border: 0px; height: 50px"
+                src="https://cdn.ko-fi.com/cdn/kofi1.png?v=3"
+                border="0"
+                alt="Buy Me a Coffee at ko-fi.com"
+            /></a>
+          </li>
+        </ul>
+      </nav>
       <div id="mainToast" class="mainToast hidden">
         The theme has been applied 🥳 <br /><small
           >Don't forget to refresh Notion to see the changes</small
         >
       </div>
+
       <h1>🎨 Select a theme</h1>
-      <p style="font-size: 15px">
-        Follow me
-        <a
-          href="https://twitter.com/intent/follow?user_id=1394691897562746881"
-          style="display: inline-block"
-        >
-          <img
-            src="https://img.shields.io/twitter/follow/_yudax?style=social"
-          />
-        </a>
-        to get updated when new themes are added.
-      </p>
-      <br />
       <div>
         <h2>☀️ Light</h2>
         <ul id="lightThemes"></ul>
@@ -187,11 +221,18 @@
         <h2>🔄 Reset to default theme</h2>
         <button id="resetTheme" class="warningBtn">Reset</button>
       </div>
+      <br />
+
+      <footer>
+        <span>
+          <a href="https://notionthemes.yudax.me?ref=NotionThemes"
+            >NotionThemes</a
+          >, Made with ❤️ by
+          <a href="https://www.yudax.me?ref=NotionThemes">Yudax</a>
+        </span>
+      </footer>
     </div>
-    <!-- <div class="copyright">
-    <a href="https://ko-fi.com/M4M37F1UV" target="_blank"><img height="50" style="border: 0px; height: 50px"
-        src="https://cdn.ko-fi.com/cdn/kofi1.png?v=3" border="0" alt="Buy Me a Coffee at ko-fi.com" /></a>
-  </div> -->
+
     <script src="js/options.js"></script>
   </body>
 </html>
