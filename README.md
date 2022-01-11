@@ -9,7 +9,7 @@
 
 **Google Chrome / Microsoft Edge / Opera**
 
-1. Download this repo as a [ZIP file](https://github.com/notionblog/NotionThemes/releases/download/0.0.1/chrome.zip).
+1. Download this repo as a [ZIP file](https://github.com/notionblog/NotionThemes/releases/download/0.0.2/chrome.zip).
 1. Unzip the file and you should have a folder named `chrome`.
 1. In Chrome/Edge go to the extensions page (`chrome://extensions` or `edge://extensions` or `opera:extensions`).
 1. Enable Developer Mode.
@@ -17,7 +17,7 @@
 
 **Mozilla Firefox**
 
-1. Download this file [firefox.xpi](https://github.com/notionblog/NotionThemes/releases/download/0.0.1/firefox.xpi)
+1. Download this file [firefox.xpi](https://github.com/notionblog/NotionThemes/releases/download/0.0.2/firefox.xpi)
 2. In Firefox go to the addons page `about:addons` or click `CMD+SHIFT+A`
 3. drag and drop the file on the page or click `install Add-on From file ...`
 

@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
-  "name": "notionthemes",
-  "version": "0.0.1",
-  "description": "Beautiful themes for Notion Web.",
+  "name": "Notion Themes",
+  "version": "0.0.2",
+  "description": "Make your Notion pretty with custom themes.",
   "permissions": ["storage", "https://notionthemes.netlify.app/"],
   "icons": {
     "16": "icons/16.png",
