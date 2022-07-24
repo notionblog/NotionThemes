@@ -3,8 +3,8 @@
 <h1 align="center">Notion Themes</h1>
 <p align="center">Make your Notion pretty with custom themes</p>
 <div align="center">
-<a href="https://addons.mozilla.org/en-US/firefox/addon/notion-themes/"><img width="170" src="./assets/firefox.png"></a>
-<a href="https://chrome.google.com/webstore/detail/notion-themes/pglbhommhmgieofbdbnlpcbgcdmoagfo/"><img width="170" src="./assets/chrome.png"></a>
+<a href="https://addons.mozilla.org/en-US/firefox/addon/nbundle/"><img width="170" src="./assets/firefox.png"></a>
+<a href="https://chrome.google.com/webstore/detail/nbundle/ijbhmpleignhmhbgmddlpmhclekghocp"><img width="170" src="./assets/chrome.png"></a>
 </div>
 <br>
 
